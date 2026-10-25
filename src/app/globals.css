@@ -1,0 +1,129 @@
+@import 'tailwindcss';
+
+:root {
+  --bazar-green: #23764d;
+  --bazar-green-dark: #175538;
+  --bazar-green-light: #e7f3e9;
+  --bazar-cream: #f8faf5;
+  --bazar-text: #1d2b21;
+  --bazar-muted: #6c796f;
+  --bazar-border: #e1e9df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 12rem;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bazar-cream);
+  color: var(--bazar-text);
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', 'Kalpurush', 'Nirmala UI',
+    system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--bazar-green);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: white;
+  background: var(--bazar-green);
+}
+
+img {
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+.bazar-container {
+  width: min(100% - 2rem, 72rem);
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.section-anchor {
+  scroll-margin-top: 12rem;
+}
+
+/* Hide the scrollbar of the horizontally scrolling category bar. */
+.bazar-category-nav {
+  scrollbar-width: none;
+}
+
+.bazar-category-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Infinite price ticker (the content is rendered twice for a seamless loop). */
+.bazar-ticker-viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.bazar-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: bazar-ticker-scroll 70s linear infinite;
+}
+
+.bazar-ticker-viewport:hover .bazar-ticker-track,
+.bazar-ticker-viewport:focus-within .bazar-ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes bazar-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .bazar-ticker-viewport {
+    overflow-x: auto;
+  }
+
+  .bazar-ticker-track {
+    animation: none;
+  }
+}
